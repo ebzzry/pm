@@ -177,7 +177,7 @@ running, to end pelo and show the accumulated stats.
       (cond ((or (help-p) (null (host-present))) (print-help))
             (t (ping-host (host-present) *count-p*)))
     (#+sbcl sb-sys:interactive-interrupt
-     #+ccl  ccl:interrupt-signal-condition
+     #+ccl ccl:interrupt-signal-condition
      #+clisp system::simple-interrupt-condition
      #+ecl ext:interactive-interrupt
      #+allegro excl:interrupt-signal
