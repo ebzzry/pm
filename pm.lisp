@@ -1,18 +1,18 @@
-;;;; pelo.lisp
+;;;; pm.lisp
 
-(uiop:define-package #:pelo/pelo
-    (:use #:cl
-          #:cl-scripting
-          #:fare-utils
-          #:net.didierverna.clon)
+(uiop:define-package #:pm/pm
+  (:use #:cl
+        #:cl-scripting
+        #:fare-utils
+        #:net.didierverna.clon)
   (:export #:get-ping
-           #:pelo))
+           #:pm))
 
-(in-package :pelo/pelo)
+(in-package :pm/pm)
 
 (defsynopsis (:postfix "HOST")
-  (text :contents "Send ICMP ECHO_REQUEST packets to network hosts. Press C-c, while pelo is
-running, to end pelo and show the accumulated stats.
+  (text :contents "Send ICMP ECHO_REQUEST packets to network hosts. Press C-c, while pm is
+running, to end pm and show the accumulated stats.
 ")
   (group (:header "Options:")
          (flag :short-name "h" :long-name "help"
@@ -50,11 +50,11 @@ running, to end pelo and show the accumulated stats.
   "To check whether to count down.")
 
 (defvar *online*
-  "common-lisp/pelo/resources/online.mp3"
+  "common-lisp/pm/resources/online.mp3"
   "Sound file for online host")
 
 (defvar *offline*
-  "common-lisp/pelo/resources/offline.mp3"
+  "common-lisp/pm/resources/offline.mp3"
   "Sound file for offline host")
 
 (defun home (path)
@@ -104,7 +104,7 @@ running, to end pelo and show the accumulated stats.
       (sleep *interval*)))
 
 (defun statistics ()
-  "Show stats of the pelo runtime."
+  "Show stats of the pm runtime."
   (format *debug-io*
           "~a"
           (format nil "~&~%Sent: ~A ~&Received: ~A ~&Percent loss: ~A%~&" *sent*
@@ -118,7 +118,7 @@ running, to end pelo and show the accumulated stats.
   "Get ping reply from host."
   (inferior-shell:run/ss
    `(inferior-shell:pipe (ping -c 1 ,host) (grep "time=")
-                         (sed -e "s/^.*time=//;s/ *ms$//"))))
+     (sed -e "s/^.*time=//;s/ *ms$//"))))
 
 (defun dead-print (date)
   "Print only the date."
@@ -185,8 +185,8 @@ running, to end pelo and show the accumulated stats.
       (statistics))))
 
 (exporting-definitions
-  (defun pelo (&rest args)
-    "Canonical entry point"
-    (apply #'main args)))
+ (defun pm (&rest args)
+   "Canonical entry point"
+   (apply #'main args)))
 
-(register-commands :pelo/pelo)
+(register-commands :pm/pm)
