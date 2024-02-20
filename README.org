@@ -1,30 +1,24 @@
-pm
-==
+#+title: pm
+#+language: en
+#+startup: showall
 
-pm is a periodic host monitor that utilizes ping to check for host availability.
+pm (ping machine) is just a fancy wrapper around ping.
 
-Table of contents
------------------
-
-- [Installation](#installation)
-- [Credits](#credits)
-
-<a name="installation">Installation</a>
----------------------------------------
+* Installation
 
 Install the dependencies using the following commands, on Debian and NixOS systems, respectively:
 
-```bash
+#+begin_src shell
 sudo apt-get install -y curl sbcl cl-launch make git iputils-ping sox
-```
+#+end_src
 
-```bash
+#+begin_src shell
 nix-env -i curl sbcl cl-launch gnumake git iputils sox
-```
+#+end_src
 
 Then, install pm:
 
-```bash
+#+begin_src shell
 sudo apt-get install -y build-essential curl sbcl cl-launch make git iputils-ping sox
 mkdir -p ~/bin ~/common-lisp
 echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
@@ -35,10 +29,8 @@ sbcl --noinform --eval "(progn (mapc #'ql:quickload '(:inferior-shell :net.didie
 make -C ~/common-lisp/pm install
 pm --help
 pm google.com
-```
+#+end_src
 
-<a name="credits">Credits</a>
------------------------------
+* Credits
 
-This was inspired by [pell](https://github.com/ebzzry/pell) and the structure of this README was
-based on [barf](https://github.com/ebzzry/barf).
+This utility is a fork of [[https://github.com/zhaqenl/pelo][pelo]], which, in turn was inspired by [[https://github.com/ebzzry/pell][pell]].
