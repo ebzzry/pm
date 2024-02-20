@@ -21,7 +21,9 @@ Then, install pm:
 #+begin_src shell
 sudo apt-get install -y build-essential curl sbcl cl-launch make git iputils-ping sox
 mkdir -p ~/bin ~/common-lisp
-echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
+case "$SH" in "zsh") SHRC="$HOME/.zshenv" ;; "bash") SHRC="$HOME/.bashrc" ;; *) SHRC="$HOME/.bashrc" ;; esac
+echo 'export PATH=$PATH:$HOME/bin' >> "$SHRC";
+source "$SHRC"; unset SH SHRC
 git clone https://github.com/fare/asdf ~/common-lisp/asdf
 git clone https://github.com/ebzzry/pm ~/common-lisp/pm
 git clone https://github.com/didierverna/clon ~/common-lisp/clon
