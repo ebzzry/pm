@@ -28,7 +28,7 @@ git clone https://github.com/fare/asdf ~/common-lisp/asdf
 git clone https://github.com/ebzzry/pm ~/common-lisp/pm
 git clone https://github.com/didierverna/clon ~/common-lisp/clon
 sbcl --noinform --eval "(progn (mapc #'ql:quickload '(:inferior-shell :net.didierverna.clon :cl-launch :fare-utils :cl-scripting)) (sb-ext:exit))"
-make -C ~/common-lisp/pm install
+make -C ~/common-lisp
 pm --help
 pm google.com
 #+end_src
